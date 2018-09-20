@@ -1,15 +1,18 @@
 apply plugin: 'com.android.application'
+
 apply plugin: 'kotlin-android'
+
 apply plugin: 'kotlin-android-extensions'
+
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.axrorxoja.testapp"
-        minSdkVersion 16
-        targetSdkVersion 26
+        minSdkVersion 15
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary=true
     }
     buildTypes {
         release {
@@ -18,11 +21,19 @@ android {
         }
     }
 }
-
+kotlin { experimental { coroutines 'enable' } }
 dependencies {
+    def osmDroid = "6.0.2"
+    def osmBonusPack = "6.5.2"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.android.support:design:26.0.0'
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:design:27.1.1'
+    implementation "org.osmdroid:osmdroid-android:" + osmDroid
+    implementation "com.github.MKergall:osmbonuspack:" + osmBonusPack
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5"
+
 }
